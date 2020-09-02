@@ -6,6 +6,7 @@ from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect 
 from django.shortcuts import get_object_or_404, render 
 from django.urls import reverse 
+from django.contrib.auth.decorators import login_required
 
 from .models import Question, Choice 
 
@@ -44,7 +45,7 @@ def results(request, question_id):
 
 # Vote for a question choice 
 
-
+@login_required
 def vote(request, question_id): 
 	# print(request.POST['choice']) 
 	question = get_object_or_404(Question, pk = question_id) 
